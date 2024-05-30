@@ -175,6 +175,18 @@
 
 // b) printFibonacciTimeouts Using Nested setTimeout
 
+//When the exercise said nested setTimeout, it was meaning having a setTimeout and it's callback function would make a setTimeout call the same function it called. For example:
+/*
+function printFibonacciTimeouts() {
+    let [a, b] = [0, 1];
+    setTimeout(function printNext() {
+        console.log(a);
+        [a, b] = [b, a + b];
+        setTimeout(printNext, 1000);
+    }, 1000)
+}
+*/
+
 
 // function printFibonacciTimeouts() {
 //     let [a, b] = [0, 1];
@@ -235,6 +247,23 @@
 // }, 200); 
 
 // Guarda una referencia a this en una variable, luego úsala dentro de una función.
+
+//This is missing part b, d, and e. Those would go like this:
+
+//b)
+//car = {...car, year: 2000}
+
+//d)
+//const boundFunction = setTimeout(car.description.bind(car), 1000)
+
+//e)
+//car = {...car, year: 2024}
+
+//The setTimeout from a will log the year as 2024, however the bound function will log the year as 2000
+//This is because with the setTimeout, the car object gets read as the function is called.
+//Once it is called, the year has been set to 2024. With the bound function, the reference to the car
+//with year 2000 is bound to the function and when the variable is changed, the variable has a
+//different reference to an object, but the bound function still has the original one
 
 
 // Task 6: Adding delay Method to All Functions
@@ -423,6 +452,9 @@ randomDelay().then((delay) => console.log(`There appears to have been a delay of
                 throw new Error(`Request failed with status ${response.status}`);
             }
         } catch (error) {
+            //When throwing inside of a catch block, the error is not being handled anywhere.
+            //That would make your program crash and the try catch block would not
+            //prevent the program from crashing.
             throw error;
         }
     }
@@ -452,6 +484,7 @@ randomDelay().then((delay) => console.log(`There appears to have been a delay of
                 const results = await Promise.all(fetchPromises);
                 return results;
             } catch (error) {
+                //Same as up above, throwing inside of a catch block would crash the program.
                 throw error;
             }
         }
