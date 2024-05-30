@@ -51,6 +51,9 @@ console.log(lessThan2)
 // the wrong answer is addition because JavaScript interprets the numbers "3" and "4" to be strings because the + sign is used as a cancatenation operator,
 // with another operation JavaScript tries to change the string to number automatically
 
+//the lessThan2 variable also contains a wrong answer. This is because when comparing strings, JavaScript first compares the first characters
+//from the two strings. Since 3 is less than 4, JavaScript says that "30" is less than "4", and it ignores the 0 in "30"
+
 // 3 Which of the following console.log messages will print? Why?
 /*
 if (0) console.log('#1 zero is true') // No Print

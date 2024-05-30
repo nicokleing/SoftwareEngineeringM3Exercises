@@ -160,6 +160,7 @@ function currencyOperation(float1, float2, operation, numDecimals = 2) {
       result = (float1 * factor - float2 * factor) / factor;
       break;
     case "*":
+        //This calculation is missing a "/ factor" so multiplication operations are bigger than they're meant to be
       result = float1 * factor * float2;
       break;
     case "/":
@@ -318,6 +319,31 @@ console.log(today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds
 
 // calculate the years old
 
+//This function is slightly off. If today was 21st May 2024 and the birthday was 22nd May 2023, years would be 1, months would be 0, and days would be -1.
+//The person has not turned 1 yet, and they can't be negative days old. We can fix this by making a few adjustments:
+/*
+function calculateAge(birthday) {
+    const now = new Date();
+    let years = now.getFullYear() - birthday.getFullYear();
+    let months = now.getMonth() - birthday.getMonth();
+    let days = now.getDate() - birthday.getDate();
+
+    if (days < 0) {
+        //Days is negative, meaning we haven't reached an extra month old yet. We want to take away 1 from months to account for that
+        months--
+    }
+
+    if (months < 0) {
+        //Months is negative, meaning we haven't reached an extra year old yet. We want to take 1 away from years to account for that
+        years--
+    }
+
+    days = days + 30 % 30 // makes the assumption that a month is 30 days long
+    months = months + 12 % 12 // if months was -1, this would make it wrap back around to 11 months
+
+    return `I'm ${years} years, ${months} months, and ${days} days old`;
+}
+*/
 function calculateAge(birthday) {
     const now = new Date();
     const years = now.getFullYear() - birthDate.getFullYear();
